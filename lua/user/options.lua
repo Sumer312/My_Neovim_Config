@@ -45,3 +45,19 @@ end
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+vim.cmd([[set clipboard+=unnamedplus]])
+vim.cmd([[    
+if has('termguicolors')
+  set termguicolors
+endif
+ let g:sonokai_style = 'espresso'
+ let g:sonokai_better_performance = 1
+]])
+vim.cmd([[ 
+if has('termguicolors')
+  set termguicolors
+endif
+  set background=light
+  let g:everforest_background = 'hard'
+  let g:everforest_better_performance = 1
+]])

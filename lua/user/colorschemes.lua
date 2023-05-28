@@ -1,6 +1,4 @@
-local colorscheme = "everforest"
-
-vim.cmd([[let g:monokaipro_filter = "default"]])
+local colorscheme = "sonokai"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then

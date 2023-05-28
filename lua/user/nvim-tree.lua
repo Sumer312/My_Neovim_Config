@@ -6,18 +6,18 @@ if not status_ok then
 	return
 end
 
-local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
-if not config_status_ok then
-	return
-end
-
+--[[ local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config") ]]
+--[[ if not config_status_ok then ]]
+--[[ 	return ]]
+--[[ end ]]
+vim.opt.termguicolors = true
 --[[ local tree_cb = nvim_tree_config.nvim_tree_callback ]]
 
 nvim_tree.setup({
 	disable_netrw = true,
 	hijack_netrw = true,
 	open_on_tab = false,
-	hijack_cursor = false,
+	hijack_cursor = true,
 	update_cwd = true,
 	hijack_directories = {
 		enable = true,
@@ -46,7 +46,7 @@ nvim_tree.setup({
 		centralize_selection = false,
 		cursorline = true,
 		debounce_delay = 15,
-		width = 35,
+		width = 30,
 		hide_root_folder = false,
 		side = "left",
 		preserve_window_proportions = false,
