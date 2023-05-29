@@ -2,6 +2,9 @@ local servers = {
   "lua_ls",
 	"pyright",
 	"jsonls",
+  "solc",
+  "gopls",
+  "html"
 }
 
 local settings = {

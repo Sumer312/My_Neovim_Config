@@ -53,6 +53,7 @@ endif
  let g:sonokai_style = 'espresso'
  let g:sonokai_better_performance = 1
 ]])
+
 vim.cmd([[ 
 if has('termguicolors')
   set termguicolors
@@ -61,3 +62,46 @@ endif
   let g:everforest_background = 'hard'
   let g:everforest_better_performance = 1
 ]])
+
+require("kanagawa").setup({
+	compile = false, -- enable compiling the colorscheme
+	undercurl = true, -- enable undercurls
+	commentStyle = { italic = true },
+	functionStyle = {},
+	keywordStyle = { italic = true },
+	statementStyle = { bold = true },
+	typeStyle = { bold = true },
+	transparent = false, -- do not set background color
+	dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+	terminalColors = true, -- define vim.g.terminal_color_{0,17}
+	colors = { -- add/modify theme and palette colors
+		palette = {},
+		theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+	},
+	overrides = function(colors) -- add/modify highlights
+		return {}
+	end,
+	theme = "dragon", -- Load "wave" theme when 'background' option is not set
+	background = { -- map the value of 'background' option to a theme
+		dark = "dragon", -- try "dragon" !
+		light = "dragon",
+	},
+})
+
+require("nvim-web-devicons").setup({
+	color_icons = true,
+	override_by_extension = {
+		["sol"] = {
+			icon = "󰡪",
+			name = "ethereum",
+		},
+		["exe"] = {
+			icon = "",
+			name = "exe",
+		},
+		["mod"] = {
+			icon = "󰕳",
+			name = "mod",
+		},
+	},
+})

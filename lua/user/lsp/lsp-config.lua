@@ -16,3 +16,7 @@ require ("lspconfig").lua_ls.setup {
   settings = opts.lua_ls_opts
 }
 
+require("lspconfig").gopls.setup {
+  on_attach = opts.on_attach,
+  capabilities = opts.capabilities,
+}

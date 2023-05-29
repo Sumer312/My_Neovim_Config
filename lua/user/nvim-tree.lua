@@ -86,8 +86,10 @@ nvim_tree.setup({
 					ignored = "◌",
 				},
 				folder = {
-					default = "",
-					open = "",
+					arrow_open ="",
+					arrow_closed = "",
+					default = "",
+					open = "",
 					empty = "",
 					empty_open = "",
 					symlink = "",

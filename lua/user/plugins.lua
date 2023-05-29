@@ -47,6 +47,7 @@ return packer.startup(function(use)
 	use("sainnhe/sonokai")
 	use("folke/tokyonight.nvim")
 	use("sainnhe/everforest")
+	use("rebelot/kanagawa.nvim")
 
 	--essential
 	use("wbthomason/packer.nvim") -- Have packer manage itself
@@ -106,3 +107,4 @@ return packer.startup(function(use)
 		require("packer").sync()
 	end
 end)
+
