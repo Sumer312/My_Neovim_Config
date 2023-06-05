@@ -37,6 +37,10 @@ nvim_tree.setup({
 		update_cwd = true,
 		ignore_list = {},
 	},
+	filters = {
+		dotfiles = false,
+		custom = { "^.git$" },
+	},
 	git = {
 		enable = true,
 		ignore = true,
@@ -86,7 +90,7 @@ nvim_tree.setup({
 					ignored = "◌",
 				},
 				folder = {
-					arrow_open ="",
+					arrow_open = "",
 					arrow_closed = "",
 					default = "",
 					open = "",

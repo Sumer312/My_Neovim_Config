@@ -1,110 +1,126 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-	print("Installing packer close and reopen Neovim...")
-	vim.cmd([[packadd packer.nvim]])
-end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-	return
-end
-
--- Have packer use a popup window
-packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
-	},
-})
-
--- Install your plugins here
-return packer.startup(function(use)
+return {
 	-- My plugins here
 
 	-- colorschemes
-	use("https://gitlab.com/__tpb/monokai-pro.nvim")
-	use("sainnhe/sonokai")
-	use("folke/tokyonight.nvim")
-	use("sainnhe/everforest")
-	use("rebelot/kanagawa.nvim")
+	"https://gitlab.com/__tpb/monokai-pro.nvim",
+	"sainnhe/sonokai",
+	"folke/tokyonight.nvim",
+	"sainnhe/everforest",
+	"rebelot/kanagawa.nvim",
+	{ "catppuccin/nvim", name = "catppuccin" },
+	{ "rose-pine/neovim", name = "rose-pine" },
 
 	--essential
-	use("wbthomason/packer.nvim") -- Have packer manage itself
-	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
-	use("numToStr/Comment.nvim") -- Easily comment stuff
-	use("kyazdani42/nvim-web-devicons")
-	use("kyazdani42/nvim-tree.lua")
-	use({ "akinsho/bufferline.nvim", tag = "*" })
-	use("moll/vim-bbye")
-	use({
+	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
+	"nvim-lua/plenary.nvim", -- ful lua functions d ny lots of plugins
+	"windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
+	"numToStr/Comment.nvim", -- Easily comment stuff
+	"kyazdani42/nvim-tree.lua",
+	{
+		"nvim-tree/nvim-web-devicons",
+		config = function()
+			require("nvim-web-devicons").setup({
+				color_icons = true,
+				override_by_extension = {
+					["sol"] = {
+						icon = "󰡪",
+						color = "#ff3d00",
+						name = "ethereum",
+					},
+					["exe"] = {
+						icon = "",
+						name = "exe",
+					},
+					["mod"] = {
+						icon = "󰕳",
+						name = "mod",
+					},
+					["js"] = {
+						icon = "",
+						color = "#FFC107",
+						name = "javascript",
+					},
+					["d.ts"] = {
+						icon = "󰛦",
+						color = "#29b6f6",
+						name = "definitionTypesctipt",
+					},
+					["config.ts"] = {
+						icon = "󰛦",
+						color = "#8bc34a",
+						name = "configTypesctipt",
+					},
+					["config.js"] = {
+						icon = "",
+						color = "#8bc34a",
+						name = "configJavscript",
+					},
+				},
+				override_by_filename = {
+					["dockerfile"] = {
+						icon = "",
+						color = "#80deea",
+						name = "dockerfile",
+					},
+					["tailwind.config.js"] = {
+						icon = "󱏿",
+						color = "#00897b",
+						name = "tailwind",
+					},
+					["yarn.lock"] = {
+						icon = "",
+						color = "#607d8b",
+						name = "yarnLocke",
+					},
+				},
+			})
+		end,
+	},
+	{ "akinsho/bufferline.nvim", version = "*" },
+	"moll/vim-bbye",
+	{
 		"nvim-lualine/lualine.nvim",
-		requires = { "nvim-tree/nvim-web-devicons", opt = true },
-	})
-	use("akinsho/toggleterm.nvim")
+		dependencies = { "nvim-tree/nvim-web-devicons", },
+	},
+	"akinsho/toggleterm.nvim",
+	"ap/vim-css-color",
 
 	--cmp plugins
-	use("hrsh7th/nvim-cmp") -- The completion plugin
-	use("hrsh7th/cmp-buffer") -- buffer completions
-	use("hrsh7th/cmp-path") -- path completions
-	use("hrsh7th/cmp-cmdline") -- cmdline completions
-	use("saadparwaiz1/cmp_luasnip") -- snippet completions
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lua")
+	"hrsh7th/nvim-cmp", -- The completion plugin
+	"hrsh7th/cmp-buffer", -- buffer completions
+	"hrsh7th/cmp-path", -- path completions
+	"hrsh7th/cmp-cmdline", -- cmdline completions
+	"saadparwaiz1/cmp_luasnip", -- snippet completions
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-nvim-lua",
 
 	--snippet engine
-	use("L3MON4D3/LuaSnip") --snippet engine
-	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+	"L3MON4D3/LuaSnip", --snippet engine
+	"rafamadriz/friendly-snippets", -- a bunch of snippets to
 
 	-- LSP
-	use("neovim/nvim-lspconfig") -- enable LSP
-	use("williamboman/mason.nvim") -- simple to use language server installer
-	use("williamboman/mason-lspconfig.nvim") -- simple to use language server installer
-	use("jose-elias-alvarez/null-ls.nvim") -- LSP diagnostics and code actions
+	"neovim/nvim-lspconfig", -- enable LSP
+	"williamboman/mason.nvim", -- simple to  language server installer
+	"williamboman/mason-lspconfig.nvim", -- simple to  language server installer
+	"jose-elias-alvarez/null-ls.nvim", -- LSP diagnostics and code actions
 
 	-- Telescope
-	use({ "nvim-telescope/telescope.nvim", tag = "0.1.0" })
-	use("nvim-telescope/telescope-media-files.nvim")
-	use("JoosepAlviste/nvim-ts-context-commentstring")
+	{ "nvim-telescope/telescope.nvim", version = "0.1.0" },
+	"nvim-telescope/telescope-media-files.nvim",
+	"JoosepAlviste/nvim-ts-context-commentstring",
 
 	-- Treesitter
-	use({
+	{
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
-	use("mrjones2014/nvim-ts-rainbow")
+		build = ":TSUpdate",
+	},
+	"mrjones2014/nvim-ts-rainbow",
 
 	-- Git
-	use("lewis6991/gitsigns.nvim")
+	"lewis6991/gitsigns.nvim",
 
 	--Dashboard
-	use("mhinz/vim-startify")
+	"mhinz/vim-startify",
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
-end)
-
+}

@@ -16,7 +16,7 @@ local options = {
 	splitbelow = true, -- force all horizontal splits to go below current window
 	splitright = true, -- force all vertical splits to go to the right of current window
 	swapfile = false, -- creates a swapfile
-	-- termguicolors = true,                    -- set term gui colors (most terminals support this)
+	termguicolors = true, -- set term gui colors (most terminals support this)
 	timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
 	undofile = true, -- enable persistent undo
 	updatetime = 300, -- faster completion (4000ms default)
@@ -26,7 +26,7 @@ local options = {
 	tabstop = 2, -- insert 2 spaces for a tab
 	cursorline = true, -- highlight the current line
 	number = true, -- set numbered lines
-	relativenumber = false, -- set relative numbered lines
+	relativenumber = true, -- set relative numbered lines
 	numberwidth = 4, -- set number column width to 2 {default 4}
 	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
 	wrap = true, -- display lines as one long line, or true to wrap within screen
@@ -50,7 +50,7 @@ vim.cmd([[
 if has('termguicolors')
   set termguicolors
 endif
- let g:sonokai_style = 'espresso'
+ let g:sonokai_style = 'andromeda'
  let g:sonokai_better_performance = 1
 ]])
 
@@ -58,50 +58,7 @@ vim.cmd([[
 if has('termguicolors')
   set termguicolors
 endif
-  set background=light
   let g:everforest_background = 'hard'
   let g:everforest_better_performance = 1
 ]])
 
-require("kanagawa").setup({
-	compile = false, -- enable compiling the colorscheme
-	undercurl = true, -- enable undercurls
-	commentStyle = { italic = true },
-	functionStyle = {},
-	keywordStyle = { italic = true },
-	statementStyle = { bold = true },
-	typeStyle = { bold = true },
-	transparent = false, -- do not set background color
-	dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-	terminalColors = true, -- define vim.g.terminal_color_{0,17}
-	colors = { -- add/modify theme and palette colors
-		palette = {},
-		theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
-	},
-	overrides = function(colors) -- add/modify highlights
-		return {}
-	end,
-	theme = "dragon", -- Load "wave" theme when 'background' option is not set
-	background = { -- map the value of 'background' option to a theme
-		dark = "dragon", -- try "dragon" !
-		light = "dragon",
-	},
-})
-
-require("nvim-web-devicons").setup({
-	color_icons = true,
-	override_by_extension = {
-		["sol"] = {
-			icon = "󰡪",
-			name = "ethereum",
-		},
-		["exe"] = {
-			icon = "",
-			name = "exe",
-		},
-		["mod"] = {
-			icon = "󰕳",
-			name = "mod",
-		},
-	},
-})

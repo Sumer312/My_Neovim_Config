@@ -29,6 +29,9 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<C-s>", ":w<CR>", opts)
 keymap("n", "fm", ":lua vim.lsp.buf.format()<CR>", opts)
 keymap("n", "<C-w>", ":Bdelete!<CR>", opts)
+keymap("n", "<C-q>", ":Telescope colorscheme<CR>jk", opts)
+keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>lg", ":lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -74,7 +77,9 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
-keymap("n", "<leader>f", ":NvimTreeFocus<cr>", opts)
+keymap("n", "<leader>g", ":NvimTreeFocus<cr>", opts)
+keymap("n", "<leader>x", ":NvimTreeClose<cr>", opts)
+
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)

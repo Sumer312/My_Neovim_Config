@@ -12,8 +12,8 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.prettier.with({ extra_args = { "--jsx-single-quote" } }),
-		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
-    formatting.golines
+		formatting.golines,
+		formatting.black,
 	},
 })
